@@ -59,6 +59,12 @@ http://127.0.0.1:5000/
 - `requirements.txt` → Dependencias del proyecto
 
 ---
+## Documentación
+El proyecto incluye un manual de usuario con una descripción general del sistema y su funcionamiento.
+
+- Manual de Usuario en la carpeta docs
+
+---
 
 ##  Autora
 
