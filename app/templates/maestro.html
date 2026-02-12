@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <link type="text/css" rel="stylesheet"
+        href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+        <script src="{{url_for('static',
+        filename='js/bootstrap.bundle.min.js')}}"></script>
+        <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" />
+                <!-- Agrega estos enlaces en tu archivo HTML -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <!-- Agrega estas líneas en la sección <head> de tu HTML -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
+
+
+
+    </head>
+    <body>
+        <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img class="mb-4" src="{{ url_for('static', filename='img/logo.png') }}" alt="" width="72" height="57"></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="{{url_for('login')}}">Iniciar Sesión</a>
+         </li>
+        <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Mantenimientos</a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{url_for('leer_medico')}}">Medicos</a></li>
+                <li><a class="dropdown-item" href="{{url_for('leer_cliente')}}">Clientes</a></li>
+                <li><a class="dropdown-item" href="{{url_for('leer_especialidad')}}">Especialidades</a></li>
+
+                <li><a class="dropdown-item" href="{{url_for('leer_usuario')}}">Usuarios</a></li>
+                <li><a class="dropdown-item" href="{{url_for('leer_coberturas')}}">Coberturas</a></li>
+                <li><a class="dropdown-item" href="{{url_for('leer_reservas')}}">Reservas</a></li>
+                <li><a class="dropdown-item" href="{{url_for('leer_facturas')}}">Facturas</a></li>
+
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Movimientos</a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('nota_de_credito') }}">Nota de crédito</a></li>
+
+            </ul>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link active" href="#">Contactos</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link active" href="#">Acerca de</a>
+        </li>
+        </ul>
+        </div>
+        </div>
+        </nav>
+        <div class="container-fluid mt-3">
+        {% block contenido %}
+        {% endblock %}
+        </div>
+        {% block pie %}
+        {% endblock %}
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    </body>
+    {% block script %}
+    {% endblock %}
+</html>

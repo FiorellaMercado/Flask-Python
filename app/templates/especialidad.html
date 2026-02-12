@@ -1,0 +1,105 @@
+{% extends "maestro.html" %}
+{% block contenido %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Lista Especialidades</h4>
+                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#Nuevo">
+                    Nuevo
+                </button>
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-sm">Volver</a>
+                <table class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for esp in esp %}
+                            <tr>
+                                <td>{{esp.id}}</td>
+                                <td>{{esp.nombre}}</td>
+                                <td width="130">
+                                    <a href="/delete_especialidad/{{esp.id}}" class="btn btn-danger btn-delete btn-sm"
+                                        onclick="return confirm('¿Está seguro de borrar?')">Borrar</a>
+                                    <a href="/edit_especialidad/{{esp.id}}" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#mdEdita{{esp.id}}" type="button" title="Actualizar Registro">
+                                        Editar
+                                    </a>
+                                </td>
+                            </tr>
+                            <!-- The Modal Editar -->
+                            <div id="mdEdita{{esp.id}}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Actualizar Especialidad</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <form action="{{ url_for('edit_especialidad') }}" method="POST">
+                                            <div class="modal-body">
+                                                <div class="mb-3 mt-3">
+                                                    <input type="hidden" class="form-control" name="id" value="{{esp.id}}">
+                                                    <label for="desc" class="form-label">Nombre:</label>
+                                                    <input type="text" class="form-control" name="desc" value="{{esp.nombre}}">
+                                                </div>
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin del modal -->
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal nuevo -->
+    <div class="modal" id="Nuevo">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Agregar Especialidad</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Modal body -->
+                <form action="{{ url_for('add_especialidad') }}" method="POST">
+                    <div class="modal-body">
+                        <div class="mb-3 mt-3">
+                            <label for="desc" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" name="desc" placeholder="Ingrese Nombre">
+                        </div>
+                        <br>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Grabar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block pie %}
+    <div class="well">
+        <h6><span class="pull-right">CopyRight Rsb</span></h6>
+    </div>
+{% endblock %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</div>
